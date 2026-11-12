@@ -1,0 +1,2 @@
+# Modeling-Action-Repetition-Bias-with-Reinforcement-Learning-and-Drift-Diffusion
+A Python simulation of action repetition bias in decision-making. Agents learn with Q-learning and decide with a drift-diffusion model, producing both choices and reaction times. A repetition parameter (kappa) raises repeat rates from 54% to 94% and speeds repeat trials. Parameter recovery from simulated data reaches r = 0.94–0.97.
