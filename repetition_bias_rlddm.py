@@ -1,6 +1,6 @@
 """
 Action Repetition and Decision Bias: a Reinforcement-Learning + Drift-Diffusion Simulation
-===========================================================================================
+
 Interest area: computational psychiatry / decision neuroscience (CaCTüS application project)
 
 Question
@@ -38,9 +38,6 @@ from scipy.optimize import minimize
 RNG = np.random.default_rng(42)
 
 
-# ----------------------------------------------------------------------------
-# 1. Simulation
-# ----------------------------------------------------------------------------
 def simulate_agent(alpha, beta, kappa, a_thr=1.0, t0=0.3, n_trials=300,
                    p_reward=(0.7, 0.3), dt=0.005, noise=1.0, rng=RNG):
     """Simulate RL + DDM agent on a two-armed bandit.
@@ -85,9 +82,6 @@ def accuracy(choices, best_arm):
     return float(np.mean(choices == best_arm))
 
 
-# ----------------------------------------------------------------------------
-# 2. Effect of the repetition parameter
-# ----------------------------------------------------------------------------
 def kappa_sweep(kappas, n_agents=20):
     rows = []
     for k in kappas:
@@ -105,10 +99,6 @@ def kappa_sweep(kappas, n_agents=20):
                      np.nanmean(rt_switch) if not np.all(np.isnan(rt_switch)) else np.nan))
     return np.array(rows)
 
-
-# ----------------------------------------------------------------------------
-# 3. Parameter recovery (choice-only likelihood)
-# ----------------------------------------------------------------------------
 def neg_log_lik(params, choices, rewards):
     alpha, beta, kappa = params
     if not (0.01 <= alpha <= 1 and 0.1 <= beta <= 10):
@@ -157,9 +147,6 @@ def parameter_recovery(n_agents=40):
     return np.array(true), np.array(est)
 
 
-# ----------------------------------------------------------------------------
-# 4. Plots + summary
-# ----------------------------------------------------------------------------
 def main():
     print("Part 1-2: sweeping repetition parameter kappa ...")
     kappas = np.linspace(-0.3, 0.9, 7)
